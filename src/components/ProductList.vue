@@ -12,7 +12,7 @@
           </div>
           <div class="">
             <div>
-              <span>數量</span>
+              <span class="mr-2">數量</span>
               <select :class="'num' + product.id">
                 <option value="1">1</option>
                 <option value="2">2</option>
