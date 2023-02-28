@@ -70,6 +70,8 @@
   </div>
 </template>
 <script>
+import { mapActions } from 'pinia';
+import useCartListStore from '@/stores/cartList.js';
 export default {
   props: ['orderUrl'],
   data() {
@@ -130,6 +132,7 @@ export default {
           this.customer.address = '';
           this.customer.payment = 'ATM';
           this.customer.accept = false;
+          this.getCartList();
         } else {
           console.error('訂單提交失敗');
         }
@@ -137,6 +140,7 @@ export default {
         console.log(err);
       }
     },
+    ...mapActions(useCartListStore, ['getCartList']),
   },
 };
 </script>

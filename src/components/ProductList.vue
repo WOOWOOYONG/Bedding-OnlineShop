@@ -40,6 +40,8 @@
   </div>
 </template>
 <script>
+import { mapActions } from 'pinia';
+import useCartListStore from '@/stores/cartList.js';
 export default {
   props: ['productUrl', 'customerUrl'],
   data() {
@@ -76,11 +78,13 @@ export default {
           body: JSON.stringify(product),
         });
         const data = await res.json();
+        this.getCartList();
         console.log(data);
       } catch (err) {
         console.log(err);
       }
     },
+    ...mapActions(useCartListStore, ['getCartList']),
   },
   created() {
     this.getProductList();

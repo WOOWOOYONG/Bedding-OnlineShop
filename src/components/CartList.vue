@@ -83,26 +83,32 @@
   </div>
 </template>
 <script>
+import { mapState, mapActions } from 'pinia';
+import useCartListStore from '@/stores/cartList.js';
 export default {
   props: ['customerUrl'],
   data() {
     return {
-      cartItems: [],
-      cartTotal: null,
+      // cartItems: [],
+      // cartTotal: null,
     };
   },
+  computed: {
+    ...mapState(useCartListStore, ['cartItems', 'cartTotal']),
+  },
   methods: {
-    async getCartList() {
-      try {
-        const res = await fetch(this.customerUrl);
-        const data = await res.json();
-        this.cartItems = data.carts;
-        this.cartTotal = data.finalTotal;
-        console.log(data);
-      } catch (err) {
-        console.log(err);
-      }
-    },
+    // async getCartList() {
+    //   try {
+    //     const res = await fetch(this.customerUrl);
+    //     const data = await res.json();
+    //     this.cartItems = data.carts;
+    //     this.cartTotal = data.finalTotal;
+    //     console.log(data);
+    //   } catch (err) {
+    //     console.log(err);
+    //   }
+    // },
+    ...mapActions(useCartListStore, ['getCartList']),
     async delAllCartItems() {
       if (this.cartItems.length > 0) {
         let yes = confirm('確定刪除所有品項？');
