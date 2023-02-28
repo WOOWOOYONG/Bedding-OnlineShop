@@ -39,7 +39,7 @@
               <input
                 type="number"
                 disabled
-                class="border-2 text-center"
+                class="border-2 text-center w-10"
                 min="1"
                 max="9"
                 :class="'cartNum' + item.id"
@@ -189,7 +189,7 @@ export default {
       }
     },
   },
-  mounted() {
+  created() {
     this.getCartList();
   },
 };
