@@ -1,8 +1,10 @@
 <template>
   <div>
     <h1 class="text-3xl text-indigo-700 text-center my-5 mx-auto">床具選購</h1>
-    <div class="mx-auto max-w-[60%]">
-      <ul class="grid sm:grid-cols md:grid-cols-4 gap-10 px-20">
+    <div class="mx-auto max-w-[80%]">
+      <ul
+        class="grid sm:grid-cols md:grid-cols-2 md:px-20 lg:grid-cols-4 gap-10"
+      >
         <li class="col-span-1" v-for="product in products" :key="product.id">
           <h3 class="font-medium text-center mb-3">{{ product.title }}</h3>
           <img :src="product.images" alt="product-pic" class="w-full" />

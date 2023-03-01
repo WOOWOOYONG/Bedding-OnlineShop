@@ -1,8 +1,10 @@
 <template>
-  <div>
+  <div v-if="cartItems.length">
     <h2 class="text-2xl text-center pt-5">填寫預訂資料</h2>
-    <form class="mt-5" @submit.prevent="handleSubmit">
-      <div class="flex flex-col max-w-[20%] mx-auto">
+    <form class="mt-5 px-8" @submit.prevent="handleSubmit">
+      <div
+        class="flex flex-col lg:max-w-[20%] md:max-w-[50%] sm:max-w-[80%] mx-auto"
+      >
         <label for="name" class="text-left">姓名</label>
         <input
           type="text"
@@ -13,7 +15,9 @@
           v-model="customer.name"
         />
       </div>
-      <div class="flex flex-col max-w-[20%] mx-auto">
+      <div
+        class="flex flex-col lg:max-w-[20%] md:max-w-[50%] sm:max-w-[80%] mx-auto"
+      >
         <label for="phone" class="text-left">電話</label>
         <input
           type="text"
@@ -24,7 +28,9 @@
           v-model="customer.phone"
         />
       </div>
-      <div class="flex flex-col max-w-[20%] mx-auto">
+      <div
+        class="flex flex-col lg:max-w-[20%] md:max-w-[50%] sm:max-w-[80%] mx-auto"
+      >
         <label for="email" class="text-left">Email</label>
         <input
           type="mail"
@@ -35,7 +41,9 @@
           v-model="customer.email"
         />
       </div>
-      <div class="flex flex-col max-w-[20%] mx-auto">
+      <div
+        class="flex flex-col lg:max-w-[20%] md:max-w-[50%] sm:max-w-[80%] mx-auto"
+      >
         <label for="address" class="text-left">寄送地址</label>
         <input
           type="text"
@@ -46,7 +54,9 @@
           v-model="customer.address"
         />
       </div>
-      <div class="flex flex-col max-w-[20%] mx-auto">
+      <div
+        class="flex flex-col lg:max-w-[20%] md:max-w-[50%] sm:max-w-[80%] mx-auto"
+      >
         <label for="tradeWay" class="text-left">交易方式</label>
         <select class="border-2 my-2 py-2" v-model="customer.payment">
           <option value="ATM">ATM</option>
@@ -54,14 +64,19 @@
           <option value="超商付款">超商付款</option>
         </select>
       </div>
-      <div class="max-w-[20%] mx-auto text-left my-2">
-        <input
-          type="checkbox"
-          class="cursor-pointer"
-          required
-          v-model="customer.accept"
-        />
-        <p class="inline-block ml-5">已閱讀並同意本站購物條款</p>
+      <div
+        class="lg:max-w-[20%] md:max-w-[50%] sm:max-w-[80%] mx-auto text-left my-2"
+      >
+        <label for="terms" class="cursor-pointer">
+          <input
+            type="checkbox"
+            id="terms"
+            class="cursor-pointer"
+            required
+            v-model="customer.accept"
+          />
+          <p class="inline-block ml-5">已閱讀並同意本站購物條款</p>
+        </label>
       </div>
       <button type="submit" class="my-3 bg-orange-100 py-2 px-3">
         送出預定資料
@@ -70,7 +85,7 @@
   </div>
 </template>
 <script>
-import { mapActions } from 'pinia';
+import { mapState, mapActions } from 'pinia';
 import useCartListStore from '@/stores/cartList.js';
 export default {
   props: ['orderUrl'],
@@ -85,6 +100,9 @@ export default {
         accept: false,
       },
     };
+  },
+  computed: {
+    ...mapState(useCartListStore, ['cartItems']),
   },
   methods: {
     handleSubmit() {

@@ -1,5 +1,5 @@
 <template>
-  <div class="mt-10 bg-gray-50">
+  <div class="mt-10 bg-gray-50 overflow-auto">
     <h1 class="text-2xl text-center pt-5">我的購物車</h1>
     <table class="table-auto mx-auto mt-10">
       <thead>
@@ -13,13 +13,13 @@
       <tbody>
         <tr class="border-b-2" v-for="item in cartItems" :key="item.id">
           <td class="p-5">
-            <div class="flex items-center">
+            <div class="flex items-center flex-wrap">
               <img
                 :src="item.product.images"
                 alt="product-image"
-                class="w-20"
+                class="md:w-20"
               />
-              <span class="ml-5">{{ item.product.title }}</span>
+              <span class="md:ml-5">{{ item.product.title }}</span>
             </div>
           </td>
           <td class="p-5">{{ item.product.price }}</td>
@@ -67,7 +67,7 @@
         <tr>
           <td class="p-5">
             <button
-              class="discardAllBtn w-full bg-orange-100 p-3"
+              class="w-full bg-orange-100 p-3 whitespace-nowrap"
               @click="delAllCartItems"
             >
               刪除所有品項
@@ -75,7 +75,7 @@
           </td>
           <td class="p-5"></td>
           <td class="p-5"></td>
-          <td class="p-5">總金額</td>
+          <td class="p-5 whitespace-nowrap">總金額</td>
           <td class="p-5">{{ cartTotal }}</td>
         </tr>
       </tbody>
